@@ -1,0 +1,8 @@
+{
+  "type": "memory",
+  "name": "supermemory-mcp",
+  "url": "https://mcp.supermemory.ai/YOUR_AGENT_ID/sse",
+  "headers": {
+    "x-api-key": "YOUR_SUPERMEMORY_API_KEY"
+  }
+}
