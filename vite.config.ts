@@ -1,29 +1,46 @@
-import { cloudflare } from "@cloudflare/vite-plugin"
-import { reactRouter } from "@react-router/dev/vite"
-import tailwindcss from "@tailwindcss/vite"
-import { defineConfig } from "vite"
-import tsconfigPaths from "vite-tsconfig-paths"
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+import tailwindcss from '@tailwindcss/vite';
+import { cloudflare } from "@cloudflare/vite-plugin";
+import { reactRouter } from "@react-router/dev/vite";
 
+// https://vitejs.dev/config/
 export default defineConfig({
-    server: {
-        port: 5174,
+  plugins: [
+    react({
+      jsxImportSource: '@emotion/react',
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+      },
+    }),
+    tsconfigPaths(),
+    viteCommonjs(),
+    tailwindcss(),
+    cloudflare({
+      // Cloudflare plugin options if needed
+    }),
+    reactRouter(),
+  ],
+  server: {
+    port: 3000,
+    strictPort: true,
+    open: true,
+  },
+  build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    outDir: 'dist',
+    emptyOutDir: true,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+    esbuildOptions: {
+      target: 'esnext',
     },
-    plugins: [
-        cloudflare({
-            viteEnvironment: { name: "ssr" },
-        }),
-        tailwindcss(),
-        reactRouter(),
-        tsconfigPaths(),
-    ],
-    optimizeDeps: {
-        exclude: [
-            "@standard-community/standard-json",
-            "@valibot/to-json-schema",
-            "valibot",
-        ],
-    },
-    ssr: {
-        noExternal: true,
-    },
-})
+  },
+  ssr: {
+    noExternal: ['@supermemory/sdk']
+  }
+});

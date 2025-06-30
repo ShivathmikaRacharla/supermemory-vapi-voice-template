@@ -1,15 +1,42 @@
-.DS_Store
-/node_modules/
-*.tsbuildinfo
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-# React Router
-/.react-router/
-/build/
+# Testing
+coverage/
 
-# Cloudflare
-.mf
-.wrangler
-.dev.vars*
+# Production
+build/
+dist/
 
+# Environment variables
 .env
-bun.lock
+.env.*
+!.env.example
+
+# Local development
+.wrangler/
+.rts2_cache_cjs/
+.rts2_cache_esm/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local Netlify folder
+.netlify
+
+# Local development
+.DS_Store
+Thumbs.db

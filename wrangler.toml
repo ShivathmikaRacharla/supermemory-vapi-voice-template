@@ -1,0 +1,14 @@
+name = "supermemory-mcp"
+main = "./workers/app.ts"
+compatibility_date = "2025-04-04"
+
+[vars]
+SUPREMEMORY_API_KEY = "sm_vhEWodqJ1sCaE6L2gn1Fzx_eelbgqKyomcZOTSgXChBdBFNhUxbWNOjUFGUoQMNDGtXzLrTpkVTIFYfBUfjWJnU"
+AUTH_SECRET = "b61d82fd2a8af487a3ec689395a402d1d4dea599f1d242bf9a727420dcc89e9b"
+NODE_ENV = "development"
+
+[build]
+command = "bun run build"
+
+[dev]
+port = 8787

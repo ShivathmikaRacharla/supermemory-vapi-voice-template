@@ -113,9 +113,11 @@ export async function loader({ request, context }: Route.LoaderArgs) {
     const cookies = request.headers.get("Cookie")
     const session = await getSession(cookies)
 
+    console.log("ENV API KEY:", import.meta.env.VITE_SUPERMEMORY_API_KEY);
+
     const supermemory = new Supermemory({
-        apiKey: context.cloudflare.env.SUPERMEMORY_API_KEY,
-    })
+        apiKey: import.meta.env.VITE_SUPERMEMORY_API_KEY,
+      });
 
     if (session.has("userId")) {
         const userId = session.get("userId")!
